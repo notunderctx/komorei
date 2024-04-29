@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+model Anime {
+  id            String     @id @map("_id")
+  malId         Int
+  titleRomaji   String
+  titleEnglish  String
+  titleNative   String
+  titleUserPreferred String
+  image         String
+  trailerId     String
+  trailerSite   String
+  trailerThumbnail String
+  description   String
+  status        String
+  cover         String
+  rating        Int
+  releaseDate   Int
+  color         String
+  genres        String[]
+  totalEpisodes Int
+  duration      Int
+  type          String
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model BillBoard{
+  id            String     @id @map("_id")
+  malId         Int
+  title       Json
+  image    String
+  imageHash  String
+  trailer   Json
+}
+
+
+model Trending {
+  id      Int     @id @map("_id") 
+  jsonData Json
+}
+model Popular {
+  id      Int     @id @map("_id") 
+  jsonData Json
+}
+
+model TrendingManga {
+  id      Int     @id @map("_id") 
+  jsonData Json
+}
+
+
+model PopularManga {
+  id      Int     @id @map("_id") 
+  jsonData Json
+}
+
+
+model Info {
+  id      Int     @id @map("_id")
+  identifier String 
+  jsonData Json
+}
+
+

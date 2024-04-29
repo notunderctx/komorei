@@ -1,0 +1,19 @@
+{data?.format === "MANGA" ? (
+                <>
+                  {/* Render chapters */}
+                  {data?.chapters?.data
+                    ?.slice(0, 3)
+                    .map((chapter: any, index: number) => (
+                      <div key={index}>{chapter?.title}</div>
+                    ))}
+                </>
+              ) : (
+                <>
+                  <div className="gap-1">
+                    <h1 className="font-karla text-[20px] font-bold hidden md:block">
+                      Characters
+                    </h1>
+                    <Characters info={data?.characters} />
+                  </div>
+                </>
+              )}
