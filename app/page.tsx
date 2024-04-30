@@ -4,7 +4,6 @@ import AnimeList from "@/components/AnimeList";
 import BillBoard from "@/components/BillBoard";
 import First from "@/components/First";
 import Header from "@/components/Header";
-import LatestEpisodes from "@/components/Latest";
 import devtools from "devtools-detect";
 
 import {
