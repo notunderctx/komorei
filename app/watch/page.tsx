@@ -2,13 +2,15 @@
 
 import Embed from "@/components/Embed";
 import Head from "next/head";
+import router, { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import WatchInfo from "@/components/WatchInfo";
 import EpisodeSection from "@/components/EpisodesSection";
 
 function Watch() {
   const searchParams = useSearchParams() || "";
+
   const a = searchParams.get("a") || "";
   const id = searchParams.get("id") || "";
   const ep = searchParams.get("ep") || "";
@@ -126,6 +128,15 @@ function Watch() {
 
   return (
     <>
+      fallback=
+      {
+        <div className="h-screen flex items-center justify-center">
+          <div className="loader">
+            <label>Please wait...</label>
+            <div className="loading"></div>
+          </div>
+        </div>
+      }
       {!loading ? (
         <div className="w-screen h-full mb-10 no-scrollbar">
           <div className="lg:max-w-[1760px] lg:px-5 w-full flex flex-col lg:flex-row mx-auto">
@@ -250,4 +261,20 @@ function Watch() {
   );
 }
 
-export default Watch;
+const SuspenseWrapperW = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="h-screen flex items-center justify-center">
+          <div className="loader">
+            <label>Please wait...</label>
+            <div className="loading"></div>
+          </div>
+        </div>
+      }>
+      <Watch />
+    </Suspense>
+  );
+};
+
+export default SuspenseWrapperW;

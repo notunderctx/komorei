@@ -31,6 +31,7 @@ const ChapterViewer: React.FC<{ data: any[] }> = ({ data }) => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const goToNextPage = () => {
@@ -99,18 +100,7 @@ const ChapterViewer: React.FC<{ data: any[] }> = ({ data }) => {
               ))}
             </div>
           </div>
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4">
-            <button
-              onClick={goToPreviousPage}
-              className="p-2 rounded-full bg-gray-800 text-white">
-              <ChevronUpIcon className="w-6 h-6" />
-            </button>
-            <button
-              onClick={goToNextPage}
-              className="p-2 rounded-full bg-gray-800 text-white">
-              <ChevronDownIcon className="w-6 h-6" />
-            </button>
-          </div>
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4"></div>
           <div className="fixed bottom-0 left-0 w-full z-50 group  translate-all duration-300 ease-out">
             <div className="flex  gap-[1px] w-full">
               {data?.map((_: any, index: number) => (

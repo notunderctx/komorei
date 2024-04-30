@@ -2,8 +2,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-- fill in the examples at .env.example and components/Constats.example.ts
-
 run the development server:
 
 ```bash

@@ -48,7 +48,8 @@ function Search() {
     } else {
       setMedia([]);
     }
-  }, [query]); // Include query in the dependency array
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   return (
     <Combobox value={selectedMedia} onChange={setSelectedMedia}>

@@ -17,11 +17,12 @@ const AnimeList: React.FC<MovieListProps> = ({ data, title }) => {
   const [animeData, setAnimeData] = useState<IAnimeResult[] | null | any[]>(
     null
   );
+  const [id, setId] = useState("...");
   function getId(idv: any, anime: any) {
     const title = anime?.title;
 
     async function ss() {
-      if (anime?.type === "MANGA") {
+      if (anime?.format === "MANGA") {
         const id: any = await getMangaId(
           title?.romaji,
           title?.english,
@@ -32,8 +33,31 @@ const AnimeList: React.FC<MovieListProps> = ({ data, title }) => {
         if (id.id) return id?.id;
       }
     }
-    ss();
+    let t = ss().then((r) => {
+      console.log(r);
+
+      return r;
+    });
+
+    return t;
   }
+  async function MId(idv: any, anime: any) {
+    let re = await getId(idv, anime);
+    console.log(re);
+    return re;
+  }
+  async function IdsManga() {
+    await Promise.all(
+      animeData?.map(async (anime) => {
+        if (anime?.format === "MANGA") {
+          const originalId = anime?.id;
+
+          anime.id = (await MId(originalId, anime)) || originalId;
+        }
+      }) as any
+    );
+  }
+  IdsManga();
 
   function truncate(str: string, maxlength: number) {
     return str?.length > maxlength
@@ -78,7 +102,9 @@ const AnimeList: React.FC<MovieListProps> = ({ data, title }) => {
                   className=" h-[190px] w-[135px] xl:h-[265px] xl:w-[185px] rounded-md z-30 overflow-hidden relative"
                   onClick={() => {
                     window.open(
-                      `/streaming/${anime.type === "MANGA" ? `${getId(anime?.id, anime)}` : `${anime?.id}`}`
+                      `/streaming/${
+                        anime.type === "MANGA" ? `${anime?.id}` : `${anime?.id}`
+                      }`
                     ); //href={`/streaming?an=${anime?.id}`}
                   }}>
                   <Image

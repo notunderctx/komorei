@@ -2,7 +2,7 @@
 
 import Loading from "@/components/Loading";
 import Player from "@/components/player/Video";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { API_URL } from "../Constants";
 
@@ -91,4 +91,20 @@ const SBS = () => {
   );
 };
 
-export default SBS;
+const SuspenseWrapper = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="h-screen flex items-center justify-center">
+          <div className="loader">
+            <label>Please wait...</label>
+            <div className="loading"></div>
+          </div>
+        </div>
+      }>
+      <SBS />
+    </Suspense>
+  );
+};
+
+export default SuspenseWrapper;

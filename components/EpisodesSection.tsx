@@ -24,6 +24,7 @@ function EpisodeSection({
     } else if (parseFloat(ep) + 1 < data?.[0]?.data?.length) {
       SetNextEp(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

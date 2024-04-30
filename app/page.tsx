@@ -50,7 +50,7 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [x]);
   if (devtools.isOpen) {
-    //window.location.replace("https://screenmessage.com/syyu");
+    window.location.replace("https://screenmessage.com/syyu");
   }
 
   const request: any = {};
