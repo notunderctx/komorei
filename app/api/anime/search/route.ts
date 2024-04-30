@@ -201,7 +201,7 @@ interface Artwork {
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const query = searchParams.get("query");
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   try {
     const res = await axios.get(`${apiUrl}search/anime/${query}/`);
     const _response: any | SearchResult = res.data;

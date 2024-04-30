@@ -128,15 +128,6 @@ function Watch() {
 
   return (
     <>
-      fallback=
-      {
-        <div className="h-screen flex items-center justify-center">
-          <div className="loader">
-            <label>Please wait...</label>
-            <div className="loading"></div>
-          </div>
-        </div>
-      }
       {!loading ? (
         <div className="w-screen h-full mb-10 no-scrollbar">
           <div className="lg:max-w-[1760px] lg:px-5 w-full flex flex-col lg:flex-row mx-auto">

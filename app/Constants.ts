@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config({
-  path: "/.env",
-});
+dotenv.config();
 
-export const API_URL = process.env.BASE_URL;
+export const API_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://animedataapiv3.vercel.app";

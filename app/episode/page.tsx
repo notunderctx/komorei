@@ -51,8 +51,6 @@ const SBS = () => {
           const dubFirstSourceUrl =
             dubJson.sources.find((source) => source.url)?.url || "";
           setDub(dubFirstSourceUrl);
-        } else {
-          console.log("No sub found.");
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -75,7 +73,7 @@ const SBS = () => {
 
   return (
     <Player
-      sub={sub}
+      sub={sub || dub || ""}
       dub={dub || sub || ""}
       option={{
         autoOrientation: true,
@@ -93,15 +91,7 @@ const SBS = () => {
 
 const SuspenseWrapper = () => {
   return (
-    <Suspense
-      fallback={
-        <div className="h-screen flex items-center justify-center">
-          <div className="loader">
-            <label>Please wait...</label>
-            <div className="loading"></div>
-          </div>
-        </div>
-      }>
+    <Suspense>
       <SBS />
     </Suspense>
   );
